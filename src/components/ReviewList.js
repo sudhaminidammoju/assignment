@@ -1,9 +1,20 @@
 // src/components/ReviewList.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ReviewList = ({ reviews }) => {
+  const navigate = useNavigate();
+  const handleLog = async (e) => {
+    e.preventDefault();
+    try {
+      navigate('/');
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
-    <div>
+    <form onSubmit={handleLog}>
+      <div>
       <h2>Reviews</h2>
       {reviews.length > 0 ? (
         reviews.map(review => (
@@ -16,6 +27,9 @@ const ReviewList = ({ reviews }) => {
         <p>No reviews yet</p>
       )}
     </div>
+    <button type="logout">Logout</button>
+    </form>
+    
   );
 };
 

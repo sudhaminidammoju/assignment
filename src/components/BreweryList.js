@@ -1,10 +1,20 @@
 // src/components/BreweryList.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BreweryList = ({ breweries }) => {
+  const navigate = useNavigate();
+  const handleLog = async (e) => {
+    e.preventDefault();
+    try {
+      navigate('/');
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
-    <div>
+    <form onSubmit={handleLog}>
+      <div>
       <h2>Breweries</h2>
       <ul>
         {breweries.map((brewery) => (
@@ -13,7 +23,10 @@ const BreweryList = ({ breweries }) => {
           </li>
         ))}
       </ul>
+
     </div>
+    <button type="logout">Logout</button>
+    </form>
   );
 };
 
